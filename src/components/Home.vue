@@ -135,6 +135,7 @@ input[type=search] {
     border-radius: 3em;
     padding: 1em;
     width: 100%;
+    font-size: 16px;
 }
 </style>
 
