@@ -44,8 +44,13 @@
                 {{ ranking.name }}
             </router-link>
           </td>
-          <td>{{ ranking.score }}</td>
-          <td><span class="score-bar"><span :style="{ width: `${ranking.points / ranking.pointsTotal * 100}%`}"></span></span></td>
+          <td>{{ ranking.score || '?' }}</td>
+          <td>
+            <span v-if="!ranking.score">?</span>
+            <span v-else class="score-bar">
+              <span :style="{ width: `${ranking.points / ranking.pointsTotal * 100}%`}"></span>
+            </span>
+          </td>
         </tr>
 
         <tr class="load-more">
