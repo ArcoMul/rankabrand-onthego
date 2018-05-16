@@ -83,7 +83,6 @@ export default {
   }
 
 .logo {
-    height: 15vh;
     grid-area: a;
     align-self: center;
     justify-self: center;
@@ -92,10 +91,12 @@ export default {
 }
 
 .resultaat {
-    align-self: flex-end;
+    display: flex;
+      flex-flow: column-reverse;
+
     grid-area: b;
-    height: 75vh;
     overflow: auto;
+    height: 75vh;
 
 }
 
@@ -121,7 +122,6 @@ a {
     background-color:#41afd1;
     padding: .5em;
     color: white;
-    height: 5vh;
   }
 
 input[type=search] {
