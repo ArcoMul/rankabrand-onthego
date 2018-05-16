@@ -2,8 +2,14 @@
     <div class="wrapper">
       <div class="logo"><img src="/static/img/rank-a-brand-logo.png" alt="logo"></div>
       <div class="resultaat">  
-        <li v-for="(result, index) in results" :key="index" class="search-result">
-          <router-link :to="`/ranking/${result._id}`" v-html="highlight(result.name, query)"></router-link>
+        <li v-if="query && results.length === 0">
+          <span>Geen resultaten</span>
+        </li>
+        <li v-else
+          v-for="(result, index) in results"
+          :key="index"
+          class="search-result">
+            <router-link :to="`/ranking/${result._id}`" v-html="highlight(result.name, query)"></router-link>
         </li>
       </div>  
       <form class="search">
@@ -66,7 +72,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 .wrapper {
@@ -103,8 +108,7 @@ export default {
 li {
     list-style: none;
 }
-
-a {
+a, span {
     display: block;
     background: white;
     text-align: left;
@@ -113,6 +117,9 @@ a {
     text-decoration: none;
     color: grey;
     font-weight: 700;
+}
+a {
+    cursor: pointer;
 }
 
 .search {
