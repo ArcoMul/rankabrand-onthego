@@ -48,13 +48,8 @@ export default {
 <style scoped>
 
 .wrapper {
-    border: 2px solid grey;
-    border-radius: 5px;
-    background-color: lightgray;
-}
-
-.wrapper {
     height:100vh;
+    background-color: lightgray;
     display: grid;
     grid-template-columns: 0fr 1fr 0fr;
     grid-template-rows: 1fr 2fr 0fr;
@@ -66,24 +61,36 @@ export default {
   }
 
 .logo {
+    height: 15vh;
     grid-area: a;
     align-self: center;
     justify-self: center;
     font-style: oblique;
     font-size: xx-large;
-  }
+}
 
 .resultaat {
     align-self: flex-end;
     grid-area: b;
+    height: 75vh;
+    overflow: auto;
 
 }
 
 li {
     background: white;
     padding: 1em;
+    border: .5px solid lightgrey;
+    list-style: none;
+    text-align: left;
 }
 
+a {
+    text-decoration: none;
+    color: grey;
+    font-weight: 700;
+
+}
 
 .search {
     grid-area: c;
@@ -92,6 +99,7 @@ li {
     background-color:#41afd1;
     padding: .5em;
     color: white;
+    height: 5vh;
   }
 
 input[type=search] {
