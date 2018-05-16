@@ -98,12 +98,10 @@ export default {
 
 .resultaat {
     display: flex;
-      flex-flow: column-reverse;
-
+    flex-flow: column-reverse;
     grid-area: b;
     overflow: auto;
-    height: 75vh;
-
+    height: 60vh;
 }
 
 li {
