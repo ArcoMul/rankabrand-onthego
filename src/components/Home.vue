@@ -2,23 +2,46 @@
     <div class="wrapper">
       <div class="logo"><img src="/static/img/rank-a-brand-logo.png" alt="logo"></div>
       <div class="resultaat">  
-        <p>resultaat 1</p>
-        <p>resultaat 2</p>
-        <p>resultaat 3</p>
-        <p>resultaat 1</p>
-        <p>resultaat 2</p>
-        <p>resultaat 3</p>
+        <li v-for="(result, index) in results" :key="index" class="search-result">
+          <a :href="`/ranking/${result._id}`" v-html="highlight(result.name, query)"></a>
+        </li>
       </div>  
       <form class="search">
         <div>
-            <input type="search" id="mySearch" name="q">
+          <input type="search" v-model="query" @input="onQuery" id="mySearch" name="q">
         </div>
       </form>
     </div>
 </template>
 
 <script>
+import { request } from 'graphql-request'
 
+export default {
+  name: 'home',
+  data () {
+    return {
+      query: '',
+      results: []
+    }
+  },
+  methods: {
+    async onQuery () {
+      const { query } = this
+      this.results = (await request('http://rankabrand-api.arcomul.nl/graphql',
+        `{
+            queryRankings(query: "${query}") {
+                _id
+                name
+            }
+        }`)).queryRankings
+    },
+    highlight (text, highlight) {
+      const t = text.replace(new RegExp(highlight, 'i'), `<span>$&</span>`)
+      return t
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -56,10 +79,11 @@
 
 }
 
-p {
+li {
     background: white;
     padding: 1em;
 }
+
 
 .search {
     grid-area: c;
@@ -74,5 +98,11 @@ input[type=search] {
     border-radius: 3em;
     padding: 1em;
     width: 100%;
+}
+</style>
+
+<style>
+li.search-result a span {
+  font-weight: bold;
 }
 </style>

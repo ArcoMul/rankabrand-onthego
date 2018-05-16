@@ -23,7 +23,7 @@ export default {
   methods: {
     async onQuery () {
       const { query } = this
-      this.results = (await request('http://localhost:3000/graphql',
+      this.results = (await request('http://rankabrand-api.arcomul.nl/graphql',
         `{
             queryRankings(query: "${query}") {
                 _id
