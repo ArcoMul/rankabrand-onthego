@@ -26,6 +26,7 @@
 
 <script>
 import { request } from 'graphql-request'
+import config from '../../config/client'
 
 const delay = (function () {
   let timer = 0
@@ -55,13 +56,13 @@ export default {
           return
         }
 
-        this.results = (await request('http://rankabrand-api.arcomul.nl/graphql',
+        this.results = (await request(`${config.api.url}/graphql`,
           `{
-                queryRankings(query: "${query}") {
-                    _id
-                    name
-                }
-          }`)).queryRankings
+              getRankingsByQuery(query: "${query}") {
+                _id
+                name
+              }
+          }`)).getRankingsByQuery
       }, 100)
     },
     highlight (text, highlight) {

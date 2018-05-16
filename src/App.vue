@@ -46,4 +46,11 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+
+a {
+  color: blue;
+}
+a:visited {
+  color: blue;
+}
 </style>
