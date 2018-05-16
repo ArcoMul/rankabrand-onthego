@@ -5,16 +5,7 @@
         <li v-for="(result, index) in results" :key="index" class="search-result">
           <router-link :to="`/ranking/${result._id}`" v-html="highlight(result.name, query)"></router-link>
         </li>
-      </div>  
-      <form class="search">
-        <div>
-          <input type="search"
-            :value="query"
-            @input="e => onQuery(e.target.value)"
-            @keypress="e => onQuery(e.target.value)"
-            autocomplete="off" />
-        </div>
-      </form>
+      </div> 
     </div>
 </template>
 
@@ -70,11 +61,11 @@ export default {
 <style scoped>
 
 .wrapper {
-    height:100vh;
+    height: 90vh;
     background-color: lightgray;
     display: grid;
     grid-template-columns: 0fr 1fr 0fr;
-    grid-template-rows: 1fr 2fr 0fr;
+    grid-template-rows: .5fr 2fr .2fr;
     grid-template-areas: 
       ". a ."
       ". b ."
@@ -92,11 +83,10 @@ export default {
 
 .resultaat {
     display: flex;
-      flex-flow: column-reverse;
-
+    flex-flow: column-reverse;
     grid-area: b;
     overflow: auto;
-    height: 75vh;
+    height: 74vh;
 
 }
 
@@ -113,21 +103,6 @@ a {
     text-decoration: none;
     color: grey;
     font-weight: 700;
-}
-
-.search {
-    grid-area: c;
-    align-self: center;
-    border: 2px solid #72bcd1;
-    background-color:#41afd1;
-    padding: .5em;
-    color: white;
-  }
-
-input[type=search] {
-    border-radius: 3em;
-    padding: 1em;
-    width: 100%;
 }
 </style>
 

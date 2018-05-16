@@ -2,6 +2,18 @@
   <div id="app">
     <main>
       <router-view></router-view>
+      <div class="pagina"></div>
+      <div class="search">
+        <form class="search">
+          <div>
+            <input type="search"
+              :value="query"
+              @input="e => onQuery(e.target.value)"
+              @keypress="e => onQuery(e.target.value)"
+              autocomplete="off" />
+          </div>
+        </form>     
+      </div>
     </main>
   </div>
 </template>
@@ -45,5 +57,18 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
+}
+
+.search {
+    border: 2px solid #72bcd1;
+    background-color:#41afd1;
+    padding: .5em;
+    color: white;
+  }
+
+input[type=search] {
+    border-radius: 3em;
+    padding: 1em;
+    width: 100%;
 }
 </style>
