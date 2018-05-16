@@ -3,7 +3,7 @@
       <div class="logo"><img src="/static/img/rank-a-brand-logo.png" alt="logo"></div>
       <div class="resultaat">  
         <li v-for="(result, index) in results" :key="index" class="search-result">
-          <a :href="`/ranking/${result._id}`" v-html="highlight(result.name, query)"></a>
+          <router-link :to="`/ranking/${result._id}`" v-html="highlight(result.name, query)"></router-link>
         </li>
       </div>  
       <form class="search">
