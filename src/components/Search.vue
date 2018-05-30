@@ -109,7 +109,7 @@ export default {
 }
 
 .results li {
-  border-bottom: .5px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 }
 
 a, span {

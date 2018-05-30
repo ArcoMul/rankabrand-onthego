@@ -12,6 +12,6 @@
   background-color: #fff;
   position: relative;
   z-index: 1;
-  border-bottom: .5px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 }
 </style>
