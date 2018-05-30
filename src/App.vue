@@ -2,19 +2,26 @@
   <div id="app">
     <main>
       <router-view></router-view>
+      <side-menu />
     </main>
   </div>
 </template>
 
 <script>
+import SideMenu from './components/SideMenu.vue'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    SideMenu
+  }
 }
 </script>
 
 <style>
 body {
   margin: 0;
+  background-color: #f3f3f3;
 }
 
 #app {
@@ -25,26 +32,8 @@ body {
 }
 
 main {
-  text-align: center;
-}
-
-header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
-}
-
-header span {
-  display: block;
   position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
+  overflow: auto;
 }
 
 a {
@@ -52,5 +41,30 @@ a {
 }
 a:visited {
   color: blue;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+  color: #a5a5a5;
+  opacity: 1;
+  font-weight: normal;
+}
+:-moz-placeholder {
+  font-style: italic;  
+  color: #a5a5a5;
+  opacity: 1;
+  font-weight: normal;
+}
+::-moz-placeholder {
+  font-style: italic;  
+  color: #a5a5a5;
+  opacity: 1;
+  font-weight: normal;
+}
+:-ms-input-placeholder {  
+  font-style: italic; 
+  color: #a5a5a5;
+  opacity: 1;
+  font-weight: normal;
 }
 </style>
