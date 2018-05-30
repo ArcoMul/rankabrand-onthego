@@ -27,7 +27,7 @@ export default {
     z-index: 2;
 }
 .menu-button > div {
-    height: 3.5px;
+    height: 4px;
     width: 100%;
     margin: 8px 0;
     background-color: #000;

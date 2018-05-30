@@ -67,4 +67,11 @@ a:visited {
   opacity: 1;
   font-weight: normal;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
 </style>
