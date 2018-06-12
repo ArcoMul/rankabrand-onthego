@@ -7,7 +7,7 @@
             :class="{ rect: true, [s]: true, active: score === s, selected: selected === s}"
             @click="selected = s"
         >
-            {{ s }}
+            <span>{{ s }}</span>
         </div>
       </div>
   </div>
@@ -69,7 +69,8 @@ p {
     position: relative;
     width: calc(20% - 18px);
     margin-right: 15px;
-    height: 64px;
+    height: 0px;
+    padding-top: calc(20% - 18px);
     background-color: #ccc;
     color: #999999;
     display: inline-block;
@@ -78,7 +79,7 @@ p {
     text-align: center;
     line-height: 64px;
     cursor: pointer;
-
+    position: relative;
     &:first-child {
         margin-left: 15px;
     }
@@ -92,6 +93,13 @@ p {
         border-color: transparent transparent #ccc transparent;
         top: -10px;
         left: calc(50% - 10px);
+    }
+    
+    span {
+      width: 100%;
+      position: absolute;
+      top: calc(50% - 30px);
+      left: 0;
     }
 }
 

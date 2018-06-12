@@ -96,12 +96,14 @@ import { request } from 'graphql-request'
 import config from '../../config/client'
 import PageHeader from './PageHeader.vue'
 import ScoreRects from './ScoreRects.vue'
+import ArrowSvg from '../../static/img/arrow.svg'
 
 export default {
   name: 'search',
   components: {
     PageHeader,
-    ScoreRects
+    ScoreRects,
+    ArrowSvg
   },
   data () {
     return {
@@ -161,6 +163,7 @@ export default {
 .page-header-content {
   display: flex;
 }
+
 .page-header-content div:nth-child(1) {
   flex: 1;
   flex-grow: 2;
@@ -171,6 +174,7 @@ export default {
   text-align: right;
   padding-right: 58px;
 }
+
 .page-header-content .search-button {
   margin: 15px;
   display: inline-block;
@@ -179,12 +183,14 @@ export default {
   width: 30px;
   height: 30px;
 }
+
 .page-header-content h1 {
   margin: 0;
   padding: 0;
-  font-size: 19px;
+  font-size: 22px;
   line-height: 60px;
-  margin-left: 25px;
+  margin-left: 15px;
+  color: #000;
 }
 
 section.logo {
