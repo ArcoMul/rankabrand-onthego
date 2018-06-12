@@ -20,7 +20,7 @@ export default {
 <style scoped>
 .menu-button {
     width: 35px;
-    position: absolute;
+    position: fixed;
     cursor: pointer;
     right: 16px;
     top: 8px;

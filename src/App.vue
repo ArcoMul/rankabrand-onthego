@@ -18,7 +18,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import './assets/scss/variables.scss';
+
 body {
   margin: 0;
   background-color: #f3f3f3;
@@ -37,10 +39,14 @@ main {
 }
 
 a {
-  color: blue;
+  color: $primary;
 }
 a:visited {
-  color: blue;
+  color: $primary;
+}
+
+p {
+  margin: 0 0 15px 0;
 }
 
 ::-webkit-input-placeholder {
@@ -50,19 +56,19 @@ a:visited {
   font-weight: normal;
 }
 :-moz-placeholder {
-  font-style: italic;  
+  font-style: italic;
   color: #a5a5a5;
   opacity: 1;
   font-weight: normal;
 }
 ::-moz-placeholder {
-  font-style: italic;  
+  font-style: italic;
   color: #a5a5a5;
   opacity: 1;
   font-weight: normal;
 }
-:-ms-input-placeholder {  
-  font-style: italic; 
+:-ms-input-placeholder {
+  font-style: italic;
   color: #a5a5a5;
   opacity: 1;
   font-weight: normal;

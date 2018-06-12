@@ -1,23 +1,27 @@
 <template>
   <div class="ranking">
 
-    <page-header class="page-header">
-      <div>
-        <h1>{{ ranking.name }}</h1>
-      </div>
-      <div>
-        <router-link to="/search" class="search-button">
-          <img src="/static/img/search.svg" />
-        </router-link>
+    <page-header>
+      <div class="page-header-content">
+        <div>
+          <h1>{{ ranking.name }}</h1>
+        </div>
+        <div>
+          <router-link to="/search" class="search-button">
+            <img src="/static/img/search.svg" />
+          </router-link>
+        </div>
       </div>
     </page-header>
 
-    <div class="content">
-
+    <section class="logo">
       <img :src="ranking.img" />
+    </section>
 
-      <p>Score: {{ ranking.score || 'Geen score bekend' }}</p>
-      <p>Points: <span v-if="ranking.score">{{ ranking.points }}/{{ ranking.pointsTotal }}</span><span v-else>Geen punten bekend</span></p>
+    <ScoreRects class="score-rects" :score="ranking.score" />
+
+    <section class="content">
+      <p>Punten: <span v-if="ranking.score">{{ ranking.points }}/{{ ranking.pointsTotal }}</span><span v-else>Geen punten bekend</span></p>
       <table>
         <thead>
           <tr>
@@ -79,10 +83,11 @@
 
         </tbody>
       </table>
+      <br />
       <a :href="ranking.url" target="_blank">Bezoek {{ ranking.name }} op rankabrand.org</a><br />
       <br />
       <router-link to="/">Terug naar zoeken</router-link>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -90,11 +95,13 @@
 import { request } from 'graphql-request'
 import config from '../../config/client'
 import PageHeader from './PageHeader.vue'
+import ScoreRects from './ScoreRects.vue'
 
 export default {
   name: 'search',
   components: {
-    PageHeader
+    PageHeader,
+    ScoreRects
   },
   data () {
     return {
@@ -113,9 +120,13 @@ export default {
         this.limit = 10
         this.previousNumberOfSameSectorRankings = -1
       } else {
-        this.previousNumberOfSameSectorRankings = this.ranking.sameSectorRankings ? this.ranking.sameSectorRankings.length : -1
+        this.previousNumberOfSameSectorRankings = this.ranking
+          .sameSectorRankings
+          ? this.ranking.sameSectorRankings.length
+          : -1
       }
-      this.ranking = (await request(`${config.api.url}/graphql`,
+      this.ranking = (await request(
+        `${config.api.url}/graphql`,
         `{
             ranking(_id: "${id}") {
               _id
@@ -133,7 +144,8 @@ export default {
                 pointsTotal
               }
             }
-        }`)).ranking
+        }`
+      )).ranking
     },
     increaseLimit (n) {
       this.limit += n
@@ -143,30 +155,31 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../assets/scss/variables.scss';
 
-.page-header {
+.page-header-content {
   display: flex;
 }
-.page-header div:nth-child(1) {
+.page-header-content div:nth-child(1) {
   flex: 1;
   flex-grow: 2;
 }
-.page-header div:nth-child(2) {
+.page-header-content div:nth-child(2) {
   flex: 1;
   flex-grow: 1;
   text-align: right;
   padding-right: 58px;
 }
-.page-header .search-button {
+.page-header-content .search-button {
   margin: 15px;
   display: inline-block;
 }
-.page-header .search-button img {
+.page-header-content .search-button img {
   width: 30px;
   height: 30px;
 }
-.page-header h1 {
+.page-header-content h1 {
   margin: 0;
   padding: 0;
   font-size: 19px;
@@ -174,21 +187,30 @@ export default {
   margin-left: 25px;
 }
 
-.content {
+section.logo {
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  text-align: center;
+}
+.score-rects {
+  padding-top: 15px;
+  background-color: #fff;
+}
+section.content {
   padding: 30px;
   background-color: white;
   text-align: center;
-}
-.content img {
-  margin-bottom: 30px;
 }
 
 a span {
   font-weight: bold;
 }
 table {
-  margin: 15px auto 30px auto;
   text-align: left;
+  margin: 0 -15px;
+  width: calc(100% + 30px);
 }
 table tr.current td {
   font-weight: bold;
