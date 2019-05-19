@@ -21,14 +21,13 @@
     <ScoreRects class="score-rects" :score="ranking.score" />
 
     <section class="content">
-      <p>Punten: <span v-if="ranking.score">{{ ranking.points }}/{{ ranking.pointsTotal }}</span><span v-else>Geen punten bekend</span></p>
-      <table>
+      <!-- <p>Punten: <span v-if="ranking.score">{{ ranking.points }}/{{ ranking.pointsTotal }}</span><span v-else>Geen punten bekend</span></p> -->
+      <table cellspacing="0">
         <thead>
           <tr>
-            <th></th>
             <th>Merk</th>
             <th>Score</th>
-            <th></th>
+            <th>Punten</th>
           </tr>
         </thead>
         <tbody>
@@ -36,9 +35,6 @@
           <tr v-for="(r, index) in ranking.sameSectorRankings"
             :class="{ current: r._id === ranking._id}"
             :key="r._id">
-            <td>
-              {{index+1}}.
-            </td>
             <td>
               <router-link
                 :to="`/ranking/${r._id}`"
@@ -52,9 +48,6 @@
 
           <tr v-if="ranking.sameSectorRankings.filter(r => r._id === ranking._id).length === 0"
             class="current">
-            <td>
-              ...
-            </td>
             <td>
               <router-link
                 :to="`/ranking/${ranking._id}`"
@@ -158,7 +151,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../assets/scss/variables.scss';
+@import "../assets/scss/variables.scss";
 
 .page-header-content {
   display: flex;
@@ -217,23 +210,47 @@ table {
   text-align: left;
   margin: 0 -15px;
   width: calc(100% + 30px);
-}
-table tr.current td {
-  font-weight: bold;
-}
-table tr.load-more {
-  text-align: center;
+  tr {
+    &:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+    &.current td {
+      font-weight: bold;
+    }
+    &.load-more {
+      text-align: center;
+    }
+  }
+  tr td {
+    padding: 10px 0;
+    &:first-child {
+      padding-left: 5px;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  thead tr th {
+    border-top: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    padding: 10px 0;
+    &:first-child {
+      padding-left: 5px;
+    }
+  }
 }
 
 .score-bar {
   display: block;
   height: 20px;
   width: 150px;
-  background-color: #eee;
+  background-color: #ddd;
+  border-radius: 20px;
 }
 .score-bar span {
   display: block;
   height: 20px;
   background-color: #999;
+  border-radius: 20px;
 }
 </style>
